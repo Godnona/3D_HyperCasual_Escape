@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MyProject/Scenes/Map0.unity
+    path: Assets/MyProject/Scenes/MainMenu.unity
     guid: 776fdfa7bafcf50448c4e8c0379416d5
   - enabled: 1
     path: Assets/MyProject/Scenes/Map1.unity
@@ -23,9 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MyProject/Scenes/Map5.unity
     guid: 63324cad21ce2d14884a81bd45fa642a
-  - enabled: 1
-    path: Assets/MyProject/Scenes/Map6.unity
-    guid: 6b170947e544f2c4f9e3b516b8ea5b02
   - enabled: 1
     path: Assets/MyProject/Scenes/LoadingScene.unity
     guid: 6a271ca714062274280107c02085e24c

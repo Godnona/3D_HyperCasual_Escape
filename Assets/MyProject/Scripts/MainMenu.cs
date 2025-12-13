@@ -5,7 +5,11 @@ public class MainMenu : MonoBehaviour
 {
     public void StartGame()
     {
-        Loader.Load("Map1");
+        SceneManager.LoadScene(SaveManager.Instance.GetLastLevel());
+    }
+    public void NewGame()
+    {
+        SceneManager.LoadScene("Map1");
     }
     public void QuitGame()
     {

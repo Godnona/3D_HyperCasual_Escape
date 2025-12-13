@@ -2,6 +2,9 @@
 using UnityEngine.InputSystem.OnScreen;
 using UnityEngine.SceneManagement;
 using System.Collections;
+
+using YG;
+
 public class GameManager : MonoBehaviour 
 { 
     public static GameManager Instance; 
@@ -14,11 +17,12 @@ public class GameManager : MonoBehaviour
     {
         return playerInstance;
     }
-
+    
 
     [Header("Game State")] 
     public bool isGamePaused = false; 
     
+    //=====================================================================
     void Awake() 
     { 
         // Create just one game manager
@@ -32,10 +36,17 @@ public class GameManager : MonoBehaviour
     } 
     
     private void Start() 
-    { 
+    {
         // SpawnPlayer(); 
-    } 
-    
+        // Auto Save
+        //if (SceneManager.GetActiveScene().name.StartsWith("Map"))
+        //{
+        //    SaveManager.Instance.SaveGame();
+        //}
+    }
+
+
+    //======================= Load player when next scene ============================
     private void OnEnable() 
     { 
         SceneManager.sceneLoaded += OnSceneLoaded; 
@@ -46,17 +57,43 @@ public class GameManager : MonoBehaviour
     } 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) 
     {
-        StartCoroutine(DelayAssign());
+        if (scene.name.StartsWith("Map"))
+            StartCoroutine(DelaySpawn());
     }
 
-    private IEnumerator DelayAssign()
+    private IEnumerator DelaySpawn()
     {
         yield return null;
-        SpawnPlayer();
+        if (SceneManager.GetActiveScene().name.StartsWith("Map"))
+        {
+            SpawnPlayer();
+            SaveManager.Instance.SaveGame(); // just save scene map
+        }
     }
 
+    //=====================================================================
+    //======================= Save game Yandex ============================
+    //=====================================================================
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause && SceneManager.GetActiveScene().name.StartsWith("Map"))
+            SaveManager.Instance.SaveGame();
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (SceneManager.GetActiveScene().name.StartsWith("Map"))
+            SaveManager.Instance.SaveGame();
+    }
+
+    //========================================================================
+    //======================== Handle Player =================================
+    //========================================================================
     private void SpawnPlayer()
     {
+        if (!SceneManager.GetActiveScene().name.StartsWith("Map"))
+            return;
+
         // Nếu player cũ còn sót trong DontDestroyOnLoad → destroy luôn
         if (playerInstance != null)
             Destroy(playerInstance);
@@ -66,15 +103,37 @@ public class GameManager : MonoBehaviour
 
         ReAssignJoystick();
         ResetPlayer();
-        
+    }
+
+    private void ReAssignJoystick()
+    {
+        if (playerJoystick == null)
+        {
+            Debug.Log("finding...");
+            playerJoystick = GameObject.Find("Floating Joystick");
+        }
+
+        if (playerInstance == null)
+            return;
+
+        if (playerJoystick == null)
+            Debug.Log("Please assign joystick into game manager");
+        if (playerJoystick != null)
+        {
+            Debug.Log("found");
+            playerInstance.GetComponent<PlayerController>().joystick = playerJoystick.GetComponent<Joystick>();
+        }
     }
 
     public void ResetPlayer() 
     { 
         if (playerInstance != null) 
             playerInstance.transform.position = new Vector3(0, 0, -4);
-    } 
-    
+    }
+
+    //=====================================================================
+    //======================= Call from other class =======================
+    //=====================================================================
     public void LoadNextLevel() 
     { 
         int currentIndex = SceneManager.GetActiveScene().buildIndex;
@@ -87,27 +146,11 @@ public class GameManager : MonoBehaviour
         }
         string nextSceneName = "Map" + (nextIndex);
         Loader.Load(nextSceneName);
-    } 
-    private void ReAssignJoystick() 
-    {
-        if(playerJoystick == null)
-        {
-            Debug.Log("finding...");
-            playerJoystick = GameObject.Find("Floating Joystick");
-        }    
-
-        if (playerInstance == null) 
-            return;
-
-        if (playerJoystick == null)
-            Debug.Log("Please assign joystick into game manager");
-        if (playerJoystick != null) 
-        {
-            Debug.Log("found");
-            playerInstance.GetComponent<PlayerController>().joystick = playerJoystick.GetComponent<Joystick>(); 
-        } 
     }
 
+    //=====================================================================
+    //============================ Function Button ============================
+    //=====================================================================
     public void PauseGame() 
     { 
         isGamePaused = true; 

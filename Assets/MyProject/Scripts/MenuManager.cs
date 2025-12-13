@@ -20,6 +20,48 @@ public class MenuManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    //=====================================================================
+    //=========== Logic show hide UI and Main menu=========================
+    //=====================================================================
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "MainMenu")
+        {
+            HideAllUI();
+        }
+        else
+        {
+            ShowGameUI();
+        }
+    }
+
+    void HideAllUI()
+    {
+        controlPanel.SetActive(false);
+        shopPanel.SetActive(false);
+        menuPanel.SetActive(false);
+    }
+
+    void ShowGameUI()
+    {
+        controlPanel.SetActive(true);
+        shopPanel.SetActive(false);
+        menuPanel.SetActive(false);
+    }
+
+    //=======================================================================
+    //=============================== Button ================================
+    //=======================================================================
     public void OpenShop()
     {
         GameManager.Instance.PauseGame();
@@ -48,8 +90,10 @@ public class MenuManager : MonoBehaviour
         GameManager.Instance.ResumeGame();
         menuPanel.SetActive(false);
     }   
-     public void BackToMainmenu()
+    public void BackToMainmenu()
     {
-
+        Time.timeScale = 1f;
+        GameManager.Instance.isGamePaused = false;
+        SceneManager.LoadScene("MainMenu");
     }    
 }
