@@ -1,0 +1,3 @@
+﻿Build path: D:/User/WorkDev/UnityProject/3D_HyperCasualGame
+Build number: 0
+PluginYG version: 2.007
