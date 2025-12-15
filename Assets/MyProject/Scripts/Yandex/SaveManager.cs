@@ -5,6 +5,7 @@ using YG;
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager Instance;
+    public int coin;
 
     private void Awake()
     {
@@ -17,26 +18,41 @@ public class SaveManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // ===== SAVE =====
+    // ===== Handle Level =====
     public void SaveGame()
     {
         YG2.saves.lastLevel = SceneManager.GetActiveScene().name;
         YG2.SaveProgress();
     }
 
+    public string GetLastLevel()
+    {
+        return YG2.saves.lastLevel;
+    }
+
+    // ===== Handle Coin =====
     public void AddCoin(int amount)
     {
         YG2.saves.coins += amount;
         YG2.SaveProgress();
     }
 
-    public int GetCoins()
+    public void Load()
     {
-        return YG2.saves.coins;
+        coin = YG2.saves.coins;
     }
 
-    public string GetLastLevel()
-    {
-        return YG2.saves.lastLevel;
-    }
+    //public int GetCoins()
+    //{
+    //    return YG2.saves.coins;
+    //}
+
+    //public void SetCoins(int value)
+    //{
+    //    YG2.saves.coins = value;
+    //    YG2.SaveProgress();
+    //}
+
+
+
 }
