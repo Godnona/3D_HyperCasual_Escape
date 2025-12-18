@@ -6,8 +6,10 @@ using YG.Utils.Pay;
 public class PurchaseListener : MonoBehaviour
 {
     //private bool purchaseHandled = false;
-    private void Awake()
+    private void Start()
     {
+        YG2.ConsumePurchases();
+
     }
 
     void OnEnable()
@@ -46,7 +48,6 @@ public class PurchaseListener : MonoBehaviour
 
         SaveManager.Instance.AddCoin(coin);
         YG2.SaveProgress();
-        YG2.ConsumePurchases();
         //YG2.ConsumePurchaseByID(productID, purchaseHandled);
     }
 
