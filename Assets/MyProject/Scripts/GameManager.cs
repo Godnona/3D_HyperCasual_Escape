@@ -33,16 +33,13 @@ public class GameManager : MonoBehaviour
         } 
         Instance = this; 
         DontDestroyOnLoad(gameObject); 
+
+        YG2.StartInit();
     } 
     
     private void Start() 
     {
-        // SpawnPlayer(); 
-        // Auto Save
-        //if (SceneManager.GetActiveScene().name.StartsWith("Map"))
-        //{
-        //    SaveManager.Instance.SaveGame();
-        //}
+
     }
 
 

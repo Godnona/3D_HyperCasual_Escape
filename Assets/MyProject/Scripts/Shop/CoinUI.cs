@@ -14,4 +14,19 @@ public class CoinUI : MonoBehaviour
     {
         Refresh();
     }
+
+    private void OnEnable()
+    {
+        SaveManager.OnCoinChanged += UpdateUI;
+    }
+
+    private void OnDisable()
+    {
+        SaveManager.OnCoinChanged -= UpdateUI;
+    }
+
+    private void UpdateUI(int value)
+    {
+        coinText.text = value.ToString();
+    }
 }

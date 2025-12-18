@@ -1,6 +1,6 @@
 {
-    "coins": 0,
-    "lastLevel": "Map2",
+    "coins": 8000,
+    "lastLevel": "Map5",
     "intExample": 5,
     "strExample": "Hello!",
     "boolExample": [
@@ -9,5 +9,5 @@
         false,
         false
     ],
-    "idSave": 111
+    "idSave": 257
 }

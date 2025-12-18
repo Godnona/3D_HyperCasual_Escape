@@ -1,3 +1,4 @@
+﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using YG;
@@ -6,6 +7,8 @@ public class SaveManager : MonoBehaviour
 {
     public static SaveManager Instance;
     public int coin;
+
+    public static event Action<int> OnCoinChanged;
 
     private void Awake()
     {
@@ -16,6 +19,23 @@ public class SaveManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        YG2.onGetSDKData += LoadFromCloud;
+    }
+
+    private void OnDisable()
+    {
+        YG2.onGetSDKData -= LoadFromCloud;
+    }
+
+    private void LoadFromCloud()
+    {
+        coin = YG2.saves.coins;
+        OnCoinChanged?.Invoke(coin); // update UI ngay
+        Debug.Log("SAVE LOADED, COIN = " + coin);
     }
 
     // ===== Handle Level =====
@@ -34,7 +54,9 @@ public class SaveManager : MonoBehaviour
     public void AddCoin(int amount)
     {
         YG2.saves.coins += amount;
+        coin = YG2.saves.coins;
         YG2.SaveProgress();
+        OnCoinChanged?.Invoke(coin);
     }
 
     public void Load()
@@ -42,17 +64,9 @@ public class SaveManager : MonoBehaviour
         coin = YG2.saves.coins;
     }
 
-    //public int GetCoins()
-    //{
-    //    return YG2.saves.coins;
-    //}
-
-    //public void SetCoins(int value)
-    //{
-    //    YG2.saves.coins = value;
-    //    YG2.SaveProgress();
-    //}
-
-
-
+    public void ForceUpdateUI()
+    {
+        coin = YG2.saves.coins;
+        OnCoinChanged?.Invoke(coin);
+    }
 }
