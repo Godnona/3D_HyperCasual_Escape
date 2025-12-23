@@ -5,11 +5,11 @@ using YG;
 public class ShopButton : MonoBehaviour
 {
     public string productID;
-    public TMP_Text priceText;
+    //public TMP_Text priceText;
 
     void Start()
     {
-        YandexPriceReceiver.Instance.Register(productID, priceText);
+        //YandexPriceReceiver.Instance.Register(productID, priceText);
     }
 
     public void Buy()

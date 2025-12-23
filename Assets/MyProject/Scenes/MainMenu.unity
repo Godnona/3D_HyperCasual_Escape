@@ -1095,7 +1095,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   productID: coin_800
-  priceText: {fileID: 422706944}
 --- !u!1 &417975474
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,7 +1360,6 @@ GameObject:
   - component: {fileID: 418675344}
   - component: {fileID: 418675343}
   - component: {fileID: 418675345}
-  - component: {fileID: 418675346}
   m_Layer: 0
   m_Name: PurchaseItem
   m_TagString: Untagged
@@ -1405,19 +1403,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 418675342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aa135eaf9ee85d4aa3ceee74ad51d88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &418675346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 418675342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b8f358a3eb974b4f98bcb9978ecc684, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c66d3ab56cc71745982569cb28c3dc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &422706942
@@ -2409,7 +2395,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   productID: coin_500
-  priceText: {fileID: 2026358018}
 --- !u!1 &815816818
 GameObject:
   m_ObjectHideFlags: 0
@@ -3013,7 +2998,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   productID: coin_1000
-  priceText: {fileID: 2009319378}
 --- !u!1 &956677732
 GameObject:
   m_ObjectHideFlags: 0
@@ -6032,7 +6016,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   productID: coin_200
-  priceText: {fileID: 618911686}
 --- !u!1 &1684203697
 GameObject:
   m_ObjectHideFlags: 0
@@ -6259,7 +6242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   productID: coin_100
-  priceText: {fileID: 815816820}
 --- !u!1 &1715793212
 GameObject:
   m_ObjectHideFlags: 0

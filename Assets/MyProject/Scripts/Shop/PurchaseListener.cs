@@ -5,17 +5,25 @@ using YG.Utils.Pay;
 
 public class PurchaseListener : MonoBehaviour
 {
-    //private bool purchaseHandled = false;
+    public static PurchaseListener Instance { get; private set; }
+
     private void Start()
     {
-        YG2.ConsumePurchases();
+        //YG2.ConsumePurchases();
 
+        // Create just one game manager
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     void OnEnable()
     {
         YG2.onPurchaseSuccess += OnPurchaseSuccess;
-        //purchaseHandled = false;
     }
 
     void OnDisable()
@@ -26,13 +34,6 @@ public class PurchaseListener : MonoBehaviour
 
     void OnPurchaseSuccess(string productID)
     {
-        //if (purchaseHandled)
-        //{
-        //    Debug.LogWarning("Purchase already handled, ignore!");
-        //    return;
-        //}
-        //purchaseHandled = true;
-
         Debug.Log("BUY SUCCESS: " + productID);
         int coin = productID switch
         {
@@ -48,7 +49,6 @@ public class PurchaseListener : MonoBehaviour
 
         SaveManager.Instance.AddCoin(coin);
         YG2.SaveProgress();
-        //YG2.ConsumePurchaseByID(productID, purchaseHandled);
     }
 
 }

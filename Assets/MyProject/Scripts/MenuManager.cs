@@ -65,6 +65,7 @@ public class MenuManager : MonoBehaviour
     //=======================================================================
     public void OpenShop()
     {
+        menuPanel.SetActive(false);
         GameManager.Instance.PauseGame();
         shopPanel.SetActive(true);
     }
@@ -76,6 +77,7 @@ public class MenuManager : MonoBehaviour
 
     public void OpenMenu()
     {
+        shopPanel.SetActive(false);
         GameManager.Instance.PauseGame();
         menuPanel.SetActive(true);
     }
