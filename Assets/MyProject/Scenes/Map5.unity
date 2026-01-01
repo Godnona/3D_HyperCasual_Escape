@@ -1985,6 +1985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1323831947}
+  spawnObject: {fileID: 223396208}
   timerText: {fileID: 1163537591}
   remainingTime: 10
 --- !u!1001 &1414728719

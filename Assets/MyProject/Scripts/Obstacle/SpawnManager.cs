@@ -4,7 +4,7 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject obstaclePrefab;
 
-    public float spawnPosX = 3.0f;
+    public float spawnPosX = 3.4f;
     public float minSpawnPosZ = 1.0f;
     public float maxSpawnPosZ = 3.5f;
 

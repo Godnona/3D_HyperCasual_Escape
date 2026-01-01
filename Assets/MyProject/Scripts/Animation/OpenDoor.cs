@@ -4,6 +4,7 @@ using UnityEngine;
 public class OpenDoor : MonoBehaviour
 {
     public Animator animator;
+    public GameObject spawnObject;
 
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private float remainingTime;
@@ -36,6 +37,7 @@ public class OpenDoor : MonoBehaviour
 
             // Pass
             timerText.color = Color.green;
+            Destroy(spawnObject);
         }
 
         int minutes = Mathf.FloorToInt(remainingTime / 60);
