@@ -4,7 +4,7 @@ using UnityEngine;
 public class OpenDoor : MonoBehaviour
 {
     public Animator animator;
-    public GameObject spawnObject;
+    public GameObject[] spawnObject;
 
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private float remainingTime;
@@ -13,7 +13,7 @@ public class OpenDoor : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Invoke("Open", remainingTime);
+        Invoke("Open", remainingTime + 0.1f);
     }
 
     // Update is called once per frame
@@ -29,6 +29,8 @@ public class OpenDoor : MonoBehaviour
 
     void CountDown()
     {
+        
+
         if(remainingTime > 0)
             remainingTime -= Time.deltaTime;
         else if(remainingTime < 0)
@@ -37,7 +39,11 @@ public class OpenDoor : MonoBehaviour
 
             // Pass
             timerText.color = Color.green;
-            Destroy(spawnObject);
+            for (int i = 0; i < spawnObject.Length; i++)
+            {
+                if (spawnObject[i] != null)
+                    Destroy(spawnObject[i]);
+            }
         }
 
         int minutes = Mathf.FloorToInt(remainingTime / 60);

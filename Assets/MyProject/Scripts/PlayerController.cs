@@ -3,10 +3,13 @@
 public class PlayerController : MonoBehaviour
 {
     public Joystick joystick;
+    public Vector3 m_input;
 
     [SerializeField] private float speed = 5f;
+
     private Rigidbody m_rb;
-    public Vector3 m_input;
+
+    private bool m_isOutShop = true;
 
     void Start()
     {
@@ -34,6 +37,18 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.LoadNextLevel();
         }
+
+        if(collision.gameObject.CompareTag("ShopInGame") && m_isOutShop)
+        {
+            m_isOutShop = false;
+            MenuManager.Instance.shopInGamePanel.gameObject.SetActive(true);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("ShopInGame"))
+            m_isOutShop=true;
     }
 
     private void HandleInput()

@@ -9,6 +9,7 @@ public class MenuManager : MonoBehaviour
     public GameObject controlPanel;
     public GameObject shopPanel;
     public GameObject menuPanel;
+    public GameObject shopInGamePanel;
 
 
     public void Awake()
@@ -98,5 +99,10 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 1f;
         GameManager.Instance.isGamePaused = false;
         SceneManager.LoadScene("MainMenu");
-    }    
+    }
+
+    public void CloseShopInGame()
+    {
+        shopInGamePanel.SetActive(false);
+    }
 }
