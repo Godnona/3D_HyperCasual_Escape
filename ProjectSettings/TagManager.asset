@@ -7,6 +7,7 @@ TagManager:
   - Obstacle
   - NextLevel
   - Shop
+  - DestroyObstacle
   layers:
   - Default
   - TransparentFX
