@@ -1,6 +1,6 @@
 {
-    "coins": 29990,
-    "lastLevel": "Map8",
+    "coins": 29720,
+    "lastLevel": "Map9",
     "life": 1,
     "intExample": 5,
     "strExample": "Hello!",
@@ -10,5 +10,5 @@
         false,
         false
     ],
-    "idSave": 519
+    "idSave": 958
 }

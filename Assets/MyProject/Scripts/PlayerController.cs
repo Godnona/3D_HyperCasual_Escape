@@ -7,7 +7,9 @@ public class PlayerController : MonoBehaviour
     public Vector3 m_input;
 
     [SerializeField] private float speed = 5f;
-
+    [SerializeField] private ParticleSystem effect;
+    
+    private Animator animator;
     private Rigidbody m_rb;
 
     private bool m_isOutShop = true;
@@ -16,6 +18,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         m_rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+        StopEffect();
     }
 
     void Update()
@@ -76,8 +80,18 @@ public class PlayerController : MonoBehaviour
 
     private void TakeDamage()
     {
+        if (SaveManager.Instance.life <= 0)
+        {
+            Die();
+            return;
+        }
+
         bool stillAlive = SaveManager.Instance.LoseLife();
-        if (stillAlive)
+        if (!stillAlive)
+        {
+            Die();
+        }
+        else
         {
             Debug.Log("Player lost 1 life, still alive");
 
@@ -87,17 +101,18 @@ public class PlayerController : MonoBehaviour
             // ⭐ đẩy player lùi nhẹ
             m_rb.linearVelocity = Vector3.zero;
         }
-        else
-        {
-            Die();
-        }
+
+        
     }
 
     private IEnumerator InvincibleCoroutine()
     {
         isInvincible = true;
-        yield return new WaitForSeconds(1.5f);
+        PlayerEffect();
+
+        yield return new WaitForSeconds(2.5f);
         isInvincible = false;
+        StopEffect();
     }
 
     private void Die()
@@ -107,5 +122,17 @@ public class PlayerController : MonoBehaviour
         SaveManager.Instance.ResetLife(1);
         GameManager.Instance.ResetGame();  // ⭐ Respawn + reset joystick
         Destroy(gameObject);
+    }
+
+    private void PlayerEffect()
+    {
+        effect.Play();
+        animator.SetBool("IsCollided", true);
+    }
+
+    private void StopEffect()
+    {
+        effect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        animator.SetBool("IsCollided", false);
     }
 }

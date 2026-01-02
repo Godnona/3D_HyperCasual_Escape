@@ -12,6 +12,7 @@ public class SaveManager : MonoBehaviour
 
     public int life;
     public static event Action<int> OnLifeChanged;
+    public int maxLife = 3;
 
     private void Awake()
     {
@@ -113,7 +114,7 @@ public class SaveManager : MonoBehaviour
 
     public void AddLife(int amount = 1)
     {
-        YG2.saves.life += amount;
+        YG2.saves.life = Mathf.Min(YG2.saves.life + amount, maxLife); ;
         life = YG2.saves.life;
 
         YG2.SaveProgress();

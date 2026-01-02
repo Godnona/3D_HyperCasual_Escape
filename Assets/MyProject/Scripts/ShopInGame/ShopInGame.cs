@@ -13,6 +13,12 @@ public class ShopInGame : MonoBehaviour
             return;
         }
 
+        if (SaveManager.Instance.life >= SaveManager.Instance.maxLife)
+        {
+            Debug.Log("Life is full!");
+            return;
+        }
+
         bool success = SaveManager.Instance.SpendCoin(itemPrice);
 
         if (!success)

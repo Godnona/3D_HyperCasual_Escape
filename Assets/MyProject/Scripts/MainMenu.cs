@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     public void NewGame()
     {
         SceneManager.LoadScene("Map1");
+        SaveManager.Instance.ResetLife();
     }
     public void QuitGame()
     {
