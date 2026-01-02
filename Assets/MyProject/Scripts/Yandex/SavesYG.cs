@@ -4,5 +4,7 @@ namespace YG
     {
         public int coins = 0;
         public string lastLevel = "Map1";
+
+        public int life = 1;
     }
 }

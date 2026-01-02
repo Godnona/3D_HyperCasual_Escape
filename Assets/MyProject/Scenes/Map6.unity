@@ -1176,7 +1176,7 @@ MonoBehaviour:
   - {fileID: 343020424}
   - {fileID: 1576529222}
   timerText: {fileID: 1727799317}
-  remainingTime: 0
+  remainingTime: 5
 --- !u!95 &683961886
 Animator:
   serializedVersion: 7

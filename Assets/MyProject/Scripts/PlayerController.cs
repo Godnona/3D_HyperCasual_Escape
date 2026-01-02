@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody m_rb;
 
     private bool m_isOutShop = true;
+    private bool isInvincible = false;
 
     void Start()
     {
@@ -28,9 +30,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
         {
-            Die();
+            TakeDamage();
         }
 
         if (collision.gameObject.CompareTag("NextLevel"))
@@ -71,10 +73,38 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    private void TakeDamage()
+    {
+        bool stillAlive = SaveManager.Instance.LoseLife();
+        if (stillAlive)
+        {
+            Debug.Log("Player lost 1 life, still alive");
+
+            // ⭐ hiệu ứng bất tử ngắn (optional)
+            StartCoroutine(InvincibleCoroutine());
+
+            // ⭐ đẩy player lùi nhẹ
+            m_rb.linearVelocity = Vector3.zero;
+        }
+        else
+        {
+            Die();
+        }
+    }
+
+    private IEnumerator InvincibleCoroutine()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(1.5f);
+        isInvincible = false;
+    }
+
     private void Die()
     {
         Debug.Log("Player Die!");
 
+        SaveManager.Instance.ResetLife(1);
         GameManager.Instance.ResetGame();  // ⭐ Respawn + reset joystick
         Destroy(gameObject);
     }
