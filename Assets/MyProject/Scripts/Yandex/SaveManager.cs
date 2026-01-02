@@ -89,12 +89,17 @@ public class SaveManager : MonoBehaviour
     public void Load()
     {
         coin = YG2.saves.coins;
+        life = YG2.saves.life;
+
     }
 
     public void ForceUpdateUI()
     {
         coin = YG2.saves.coins;
         OnCoinChanged?.Invoke(coin);
+
+        life = YG2.saves.life;
+        OnLifeChanged?.Invoke(life);
     }
 
     // ============== Handle Health ==============
