@@ -1679,7 +1679,7 @@ MonoBehaviour:
   spawnObject:
   - {fileID: 1006615373}
   timerText: {fileID: 571619402}
-  remainingTime: 2
+  remainingTime: 60
 --- !u!1 &1197097498 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9192724527534762068, guid: 019d42d969d7d5f4ab5326ecfec21588, type: 3}

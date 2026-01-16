@@ -1988,7 +1988,7 @@ MonoBehaviour:
   spawnObject:
   - {fileID: 223396208}
   timerText: {fileID: 1163537591}
-  remainingTime: 5
+  remainingTime: 180
 --- !u!1001 &1414728719
 PrefabInstance:
   m_ObjectHideFlags: 0

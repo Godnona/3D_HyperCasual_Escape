@@ -29,7 +29,7 @@ MonoBehaviour:
     setLanguageMod: 1
   Payments:
     durationPayPanel: 1
-    testBuyFail: 0
+    testBuyFail: 1
     purshases:
     - id: gun
       title: Gun
@@ -74,7 +74,7 @@ MonoBehaviour:
     loadSceneIfSDKLate: 0
     loadSceneIndex: 0
     initDelaySimulation: 0
-    buildNumber: 6
+    buildNumber: 42
   Simulation:
     device: 0
     language: ru
