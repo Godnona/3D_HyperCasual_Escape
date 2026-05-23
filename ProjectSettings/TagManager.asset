@@ -9,6 +9,7 @@ TagManager:
   - Shop
   - DestroyObstacle
   - ShopInGame
+  - Wall
   layers:
   - Default
   - TransparentFX

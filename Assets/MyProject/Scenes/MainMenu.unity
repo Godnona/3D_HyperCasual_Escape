@@ -1198,8 +1198,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000024796, y: 176}
-  m_SizeDelta: {x: 313.3019, y: 78.7128}
+  m_AnchoredPosition: {x: 0.000024796, y: 113}
+  m_SizeDelta: {x: 313.3019, y: 114.0253}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &417975476
 MonoBehaviour:
@@ -1277,8 +1277,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -1876176956, guid: b9b819745a89eb844be50ce8aed090c6, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2882,6 +2882,7 @@ GameObject:
   - component: {fileID: 1016173011}
   - component: {fileID: 1016173013}
   - component: {fileID: 1016173014}
+  - component: {fileID: 1016173015}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2903,6 +2904,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 5527019039643748911, guid: 7179dfae0327fd74d8be6b4d4ce3a641, type: 3}
   playerJoystick: {fileID: 0}
+  audioManager: {fileID: 0}
   isGamePaused: 0
 --- !u!4 &1016173012
 Transform:
@@ -2974,6 +2976,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c66d3ab56cc71745982569cb28c3dc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1016173015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016173010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a7e22ec36e4d54b8a102d9760e75fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenuMusic: {fileID: 8300000, guid: f5d781a81ee471a4fa167565fd2a6466, type: 3}
+  challengeMapMusic: {fileID: 8300000, guid: fd4918d682f728f448e6922989863931, type: 3}
+  shopMapMusic: {fileID: 8300000, guid: 01039b512d8eb0d40942a27d0d05a251, type: 3}
+  buttonClickSfx: {fileID: 8300000, guid: 33f9a100fff0ce44b82be5fbcbc31ce2, type: 3}
+  obstacleHitSfx: {fileID: 8300000, guid: ae6970d4131417048b1bd1909288e76d, type: 3}
+  musicSource: {fileID: 0}
+  sfxSource: {fileID: 0}
+  musicVolume: 0.7
+  sfxVolume: 0.871
+  challengeMusicVolumeScale: 0.702
 --- !u!1 &1079340193
 GameObject:
   m_ObjectHideFlags: 0
@@ -3524,7 +3548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1205487705
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4724,7 +4748,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -5527,8 +5551,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000024796, y: -118}
-  m_SizeDelta: {x: 313.3019, y: 78.7128}
+  m_AnchoredPosition: {x: 0.000024796, y: -129}
+  m_SizeDelta: {x: 313.3019, y: 110.4218}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1611299370
 MonoBehaviour:
@@ -5606,8 +5630,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -684627549, guid: b9b819745a89eb844be50ce8aed090c6, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -7227,7 +7251,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

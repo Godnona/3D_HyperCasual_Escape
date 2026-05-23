@@ -66,36 +66,42 @@ public class MenuManager : MonoBehaviour
     //=======================================================================
     public void OpenShop()
     {
+        GameManager.Instance.Audio?.PlayButtonClick();
         menuPanel.SetActive(false);
         GameManager.Instance.PauseGame();
         shopPanel.SetActive(true);
     }
     public void CloseShop()
     {
+        GameManager.Instance.Audio?.PlayButtonClick();
         GameManager.Instance.ResumeGame();
         shopPanel.SetActive(false);
     }
 
     public void OpenMenu()
     {
+        GameManager.Instance.Audio?.PlayButtonClick();
         shopPanel.SetActive(false);
         GameManager.Instance.PauseGame();
         menuPanel.SetActive(true);
     }
     public void CloseMenu()
     {
+        GameManager.Instance.Audio?.PlayButtonClick();
         GameManager.Instance.ResumeGame();
         menuPanel.SetActive(false);
     }
 
     public void ResetButton()
     {
+        GameManager.Instance.Audio?.PlayButtonClick();
         GameManager.Instance.ResetGame();
         GameManager.Instance.ResumeGame();
         menuPanel.SetActive(false);
     }   
     public void BackToMainmenu()
     {
+        GameManager.Instance.Audio?.PlayButtonClick();
         Time.timeScale = 1f;
         GameManager.Instance.isGamePaused = false;
         SceneManager.LoadScene("MainMenu");
@@ -103,6 +109,7 @@ public class MenuManager : MonoBehaviour
 
     public void CloseShopInGame()
     {
+        GameManager.Instance.Audio?.PlayButtonClick();
         shopInGamePanel.SetActive(false);
     }
 }

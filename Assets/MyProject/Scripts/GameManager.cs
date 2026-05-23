@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     [Header("Player")] 
     public GameObject playerPrefab;
     public GameObject playerJoystick;
+    
+    [Header("Audio")]
+    [SerializeField] private AudioManager audioManager;
+    public AudioManager Audio => audioManager;
 
     private GameObject playerInstance;
     public GameObject GetPlayer()
@@ -33,6 +37,9 @@ public class GameManager : MonoBehaviour
         } 
         Instance = this; 
         DontDestroyOnLoad(gameObject); 
+
+        if (audioManager == null)
+            audioManager = GetComponent<AudioManager>();
 
         YG2.StartInit();
     } 

@@ -80,6 +80,8 @@ public class PlayerController : MonoBehaviour
 
     private void TakeDamage()
     {
+        GameManager.Instance.Audio?.PlayObstacleHit();
+
         if (SaveManager.Instance.life <= 0)
         {
             Die();

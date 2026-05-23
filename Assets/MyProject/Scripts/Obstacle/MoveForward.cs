@@ -19,5 +19,8 @@ public class MoveForward : MonoBehaviour
     {
         if (other.gameObject.CompareTag("DestroyObstacle"))
             Destroy(gameObject);
+
+        if (other.gameObject.CompareTag("Wall"))
+            GameManager.Instance?.Audio?.PlayObstacleHit();
     }
 }

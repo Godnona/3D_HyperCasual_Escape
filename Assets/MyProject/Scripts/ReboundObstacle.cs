@@ -19,4 +19,10 @@ public class ReboundObstacle : MonoBehaviour
     {
         rb.linearVelocity = rb.linearVelocity.normalized * speed;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+            GameManager.Instance?.Audio?.PlayObstacleHit();
+    }
 }
