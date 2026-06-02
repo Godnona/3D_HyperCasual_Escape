@@ -8,9 +8,12 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private ParticleSystem effect;
+    [SerializeField] private GameObject runSmokePrefab;
+    [SerializeField] private Transform runSmokeSpawnPoint;
     
     private Animator animator;
     private Rigidbody m_rb;
+    private GameObject currentRunSmoke;
 
     private bool m_isOutShop = true;
     private bool isInvincible = false;
@@ -60,7 +63,10 @@ public class PlayerController : MonoBehaviour
     private void HandleInput()
     {
         if (joystick == null)
+        {
+            m_input = Vector3.zero;
             return;
+        }
 
         float _horizontal = joystick.Horizontal;
         float _vertical = joystick.Vertical;
@@ -72,9 +78,13 @@ public class PlayerController : MonoBehaviour
     {
         if (m_input.sqrMagnitude > 0.01f)
         {
+            PlayRunSmoke();
             m_rb.MovePosition(m_rb.position + m_input * speed * Time.deltaTime);
             m_rb.MoveRotation(Quaternion.LookRotation(m_input));
+            return;
         }
+
+        StopRunSmoke();
     }
 
 
@@ -136,5 +146,28 @@ public class PlayerController : MonoBehaviour
     {
         effect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         animator.SetBool("IsCollided", false);
+    }
+
+    private void PlayRunSmoke()
+    {
+        if (currentRunSmoke != null || runSmokePrefab == null)
+            return;
+
+        Transform spawnPoint = runSmokeSpawnPoint != null ? runSmokeSpawnPoint : transform;
+        currentRunSmoke = Instantiate(runSmokePrefab, spawnPoint.position, spawnPoint.rotation, spawnPoint);
+    }
+
+    private void StopRunSmoke()
+    {
+        if (currentRunSmoke == null)
+            return;
+
+        Destroy(currentRunSmoke);
+        currentRunSmoke = null;
+    }
+
+    private void OnDisable()
+    {
+        StopRunSmoke();
     }
 }
