@@ -6,13 +6,15 @@ using YG;
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager Instance;
-    
+
     public int coin;
     public static event Action<int> OnCoinChanged;
 
     public int life;
     public static event Action<int> OnLifeChanged;
     public int maxLife = 3;
+
+    private bool pendingPurchasesChecked;
 
     private void Awake()
     {
@@ -28,11 +30,13 @@ public class SaveManager : MonoBehaviour
     private void OnEnable()
     {
         YG2.onGetSDKData += LoadFromCloud;
+        YG2.onPurchaseSuccess += HandlePurchaseSuccess;
     }
 
     private void OnDisable()
     {
         YG2.onGetSDKData -= LoadFromCloud;
+        YG2.onPurchaseSuccess -= HandlePurchaseSuccess;
     }
 
     private void LoadFromCloud()
@@ -47,6 +51,11 @@ public class SaveManager : MonoBehaviour
         OnLifeChanged?.Invoke(life);
         Debug.Log($"SAVE LOADED | COIN={coin} | LIFE={life}");
 
+        if (!pendingPurchasesChecked)
+        {
+            pendingPurchasesChecked = true;
+            YG2.ConsumePurchases();
+        }
     }
 
     // ===== Handle Level =====
@@ -137,4 +146,30 @@ public class SaveManager : MonoBehaviour
         OnLifeChanged?.Invoke(life);
     }
 
+    private void HandlePurchaseSuccess(string productId)
+    {
+        int purchasedCoins = GetPurchasedCoinAmount(productId);
+        if (purchasedCoins <= 0)
+        {
+            Debug.LogWarning($"PURCHASE SUCCESS but no coin reward mapped for product '{productId}'");
+            return;
+        }
+
+        AddCoin(purchasedCoins);
+        Debug.Log($"PURCHASE REWARDED | PRODUCT={productId} | COINS+={purchasedCoins} | TOTAL={coin}");
+    }
+
+    private static int GetPurchasedCoinAmount(string productId)
+    {
+        const string coinPrefix = "coin_";
+
+        if (string.IsNullOrEmpty(productId) ||
+            !productId.StartsWith(coinPrefix, StringComparison.OrdinalIgnoreCase))
+        {
+            return 0;
+        }
+
+        string amountText = productId.Substring(coinPrefix.Length);
+        return int.TryParse(amountText, out int amount) ? amount : 0;
+    }
 }

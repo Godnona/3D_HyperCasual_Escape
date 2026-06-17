@@ -1,5 +1,5 @@
 {
-    "coins": 29660,
+    "coins": 29760,
     "lastLevel": "Map13",
     "life": 2,
     "intExample": 5,
@@ -10,5 +10,5 @@
         false,
         false
     ],
-    "idSave": 1176
+    "idSave": 1179
 }
