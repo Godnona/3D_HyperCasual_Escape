@@ -29,7 +29,7 @@ MonoBehaviour:
     setLanguageMod: 1
   Payments:
     durationPayPanel: 1
-    testBuyFail: 1
+    testBuyFail: 0
     purshases:
     - id: gun
       title: Gun
@@ -58,6 +58,15 @@ MonoBehaviour:
       priceCurrencyCode: YAN
       currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
       consumed: 1
+    - id: coin_100
+      title: 100 Coins
+      description: Product - Grenade
+      imageURI: demo image
+      price: 30 YAN
+      priceValue: 30
+      priceCurrencyCode: YAN
+      currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
+      consumed: 1
   Storage:
     saveLocal: 0
     saveCloud: 1
@@ -66,10 +75,12 @@ MonoBehaviour:
     platform: {fileID: 11400000, guid: fabe82a4ab034324eb452cc7109f6d19, type: 2}
     autoApplySettings: 1
     autoPauseGame: 1
+    editTimeScale: 1
     editEventSystem: 1
     autoGRA: 1
     logInEditor: 1
     archivingBuild: 1
+    autoDefineSymbols: 1
     syncInitSDK: 0
     loadSceneIfSDKLate: 0
     loadSceneIndex: 0
@@ -78,10 +89,12 @@ MonoBehaviour:
   Simulation:
     device: 0
     language: ru
+    enableInterAdv: 1
     advIntervalSimulation: 60
     durationAdv: 0.5
     loadAdv: 0
     testFailAds: 0
+    pauseOnFocusGame: 0
   Templates:
     logoImageFormat: 0
     backgroundImgFormat: 0
